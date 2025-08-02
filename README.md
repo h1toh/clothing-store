@@ -20,6 +20,7 @@ Atualmente, os dados estão armazenados temporariamente em memória, sem persist
 
 - Node.js
 - Express
+- JavaScript
 
 ---
 
@@ -28,3 +29,33 @@ Atualmente, os dados estão armazenados temporariamente em memória, sem persist
 1. Clone o repositório:
    ```bash
    git clone https://github.com/h1toh/clothing-store.git
+
+2. Instale as dependências:
+   ```bash
+   npm install
+
+
+3. Execute o servidor:
+   ```bash
+   node index.js
+
+
+4. Utilize ferramentas como Postman, Insomnia ou curl para testar os endpoints.
+
+---
+
+🔮 Próximos Passos
+
+Este projeto está em desenvolvimento e futuramente contará com:
+
+Banco de dados para persistência dos dados
+
+Front-end completo para a loja, consumindo a API
+
+Sistema de autenticação para administração segura
+
+Implementação de carrinho de compras e checkout
+
+Testes automatizados e documentação da API
+
+---
