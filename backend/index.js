@@ -1,6 +1,10 @@
 const express = require('express')
 const app = express()
 
+require('dotenv').config()
+const conectaMongoDB = require('./config/db')
+conectaMongoDB()
+
 app.use(express.json())
 
 const PORT = 3000
