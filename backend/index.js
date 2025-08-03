@@ -8,6 +8,9 @@ const PORT = 3000
 const produtos = require('./routes/produtos')
 app.use('/produtos', produtos)
 
+const carrinho = require('./routes/carrinho')
+app.use('/carrinho', carrinho)
+
 app.get('/', (req, res) => {
     res.send('API Funcionando Wow')
 })
