@@ -3,6 +3,7 @@ const router = express.Router()
 
 let carrinho = []
 let proximoId = 1
+const tamanhosValidos = ['P', 'M', 'G', 'GG']
 
 router.get('/', (req, res) => {
     res.status(200).json(carrinho)
@@ -11,14 +12,27 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const { produtoId, nome, preco, quantidade, tamanho } = req.body
 
-    if (!produtoId || !nome || !preco || !quantidade || !tamanho) {
-        return res.status(400).json({ mensagem: 'Dados incompletos para adicionar ao carrinho' })
+    if (typeof produtoId !== 'number' || produtoId <= 0) {
+        return res.status(400).json({ mensagem: 'ID do produto inválido' })
+    }
+    if (typeof nome !== 'string' || nome.trim() === '') {
+        return res.status(400).json({ mensagem: 'Nome do produto inválido' })
+    }
+    if (typeof preco !== 'number' || preco <= 0) {
+        return res.status(400).json({ mensagem: 'Preço inválido' })
+    }
+    if (typeof quantidade !== 'number' || quantidade <= 0) {
+        return res.status(400).json({ mensagem: 'Quantidade inválida' })
+    }
+
+    if (!tamanhosValidos.includes(tamanho)) {
+        return res.status(400).json({ mensagem: 'Tamanho inválido. Use: P, M, G ou GG' })
     }
 
     const novoItem = {
         id: proximoId++,
         produtoId,
-        nome,
+        nome: nome.trim(),
         preco,
         quantidade,
         tamanho
@@ -43,9 +57,15 @@ router.patch('/:id', (req, res) => {
     const { quantidade, tamanho } = req.body
 
     if (quantidade !== undefined) {
+        if (typeof quantidade !== 'number' || quantidade <= 0) {
+            return res.status(400).json({ mensagem: 'Quantidade inválida' })
+        }
         item.quantidade = quantidade
     }
     if (tamanho !== undefined) {
+        if (!tamanhosValidos.includes(tamanho)) {
+            return res.status(400).json({ mensagem: 'Tamanho inválido' })
+        }
         item.tamanho = tamanho
     }
 
