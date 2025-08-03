@@ -52,7 +52,7 @@ router.patch('/:id', (req, res) => {
     res.status(200).json({ mensagem: 'Item atualizado com sucesso.', item })
 })
 
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id)
     if (isNaN(id)) {
         return res.status(400).json({ mensagem: "ID Inválido" })
@@ -67,7 +67,7 @@ router.delete('/', (req, res) => {
     res.status(200).json({ mensagem: 'Item removido do carrinho', item: itemRemovido[0] })
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/', (req, res) => {
     carrinho = []
     res.status(200).json({ mensagem: 'Carrinho esvaziado com sucesso' })
 })
