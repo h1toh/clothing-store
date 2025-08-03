@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 
 require('dotenv').config()
-const conectaMongoDB = require('./config/db')
+const { conectaMongoDB } = require('./config/db')
 conectaMongoDB()
 
 app.use(express.json())
