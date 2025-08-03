@@ -6,7 +6,6 @@ const tamanhosValidos = ['P', 'M', 'G', 'GG'];
 // GET /carrinho - listar os itens do carrinho
 router.get('/', async (req, res) => {
     try {
-        // Considerando um único carrinho (exemplo)
         let carrinho = await Carrinho.findOne();
         if (!carrinho) {
             // Cria um carrinho vazio caso não exista
